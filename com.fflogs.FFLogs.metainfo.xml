@@ -4,15 +4,24 @@
   <name>FF Logs</name>
   <developer_name>RPGLogs, LLC</developer_name>
   <summary>FF Logs Uploader</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
+  <url type="homepage">https://www.fflogs.com/client/download</url>
+  <launchable type="desktop-id">com.fflogs.FFLogs.desktop</launchable>
   <description>
     <p>The FF Logs Uploader is a standalone application for uploading log files.</p>
     <p>It works by monitoring the logs created by the FFXIV Plug-in for ACT (Advanced Combat Tracker).</p>
   </description>
-  <url type="homepage">https://www.fflogs.com/client/download</url>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>LicenseRef-proprietary</project_license>
-  <launchable type="desktop-id">com.fflogs.FFLogs.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">https://github.com/teatwig/com.fflogs.FFLogs/blob/e56f95edf73272b70e646b717a04c1963f64f374/screenshots/upload-a-log.png?raw=true</image>
+      <caption>Main window with the "Upload a Log" tab selected</caption>
+    </screenshot>
+  </screenshots>
   <releases>
     <release version="8.13.1" date="2014-08-20"/>
   </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="money-advertising">mild</content_attribute>
+  </content_rating>
 </component>
