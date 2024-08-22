@@ -1,0 +1,1 @@
+# FF Logs Uploader Flatpak

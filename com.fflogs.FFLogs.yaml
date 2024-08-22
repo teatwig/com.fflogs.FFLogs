@@ -1,0 +1,48 @@
+id: com.fflogs.FFLogs
+base: org.electronjs.Electron2.BaseApp
+base-version: '23.08'
+runtime: org.freedesktop.Platform
+runtime-version: '23.08'
+sdk: org.freedesktop.Sdk
+command: com.fflogs.FFLogs
+separate-locales: false
+tags:
+  - proprietary
+finish-args:
+  # TODO complains about dbus, but neither it nor ipc seem to be necessary so far
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --socket=pulseaudio
+  - --share=network
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
+  - --env=ELECTRON_TRASH=gio
+  # required for wayland (nvidia only?)
+  - --device=dri
+modules:
+  - name: fflogs-uploader
+    buildsystem: simple
+    build-commands:
+      - chmod +x fflogs.AppImage
+      - file fflogs.AppImage
+      - ./fflogs.AppImage --appimage-extract
+      - mv squashfs-root ${FLATPAK_DEST}/fflogs
+      - install -Dm644 ${FLATPAK_DEST}/fflogs/fflogs.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - desktop-file-edit --set-key=Exec --set-value=${FLATPAK_ID} --set-key=Icon --set-value=${FLATPAK_ID} --remove-key=X-AppImage-Version ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 ${FLATPAK_DEST}/fflogs/usr/share/icons/hicolor/0x0/apps/fflogs.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      - install -Dm755 fflogs.sh ${FLATPAK_DEST}/bin/${FLATPAK_ID}
+      - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ${FLATPAK_ID}.metainfo.xml
+      - patch-desktop-filename ${FLATPAK_DEST}/fflogs/resources/app.asar
+    sources:
+      - type: file
+        url: https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.13.1/fflogs-v8.13.1.AppImage
+        sha256: 3522c9a3eea8df46c5dbed5cd661dd1c60b91a86548f30b4258279c7fb58e2e4
+        dest-filename: fflogs.AppImage
+      - type: file
+        path: fflogs.sh
+      - type: file
+        path: com.fflogs.FFLogs.metainfo.xml
+cleanup:
+  - /fflogs/AppRun
+  - /fflogs/fflogs.desktop
+  #  - /fllogs/resources/app-update.yml
+  # TODO does it try to auto update with the above file?
