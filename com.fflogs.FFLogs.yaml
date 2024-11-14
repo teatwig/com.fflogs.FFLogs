@@ -15,6 +15,8 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
   - --share=ipc # required for x11
+  - --talk-name=org.freedesktop.secrets
+  - --filesystem=xdg-run/keyring
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   - --env=ELECTRON_TRASH=gio
   # required for wayland (nvidia only?)
@@ -35,8 +37,8 @@ modules:
       - patch-desktop-filename ${FLATPAK_DEST}/fflogs/resources/app.asar
     sources:
       - type: file
-        url: https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.13.1/fflogs-v8.13.1.AppImage
-        sha256: 3522c9a3eea8df46c5dbed5cd661dd1c60b91a86548f30b4258279c7fb58e2e4
+        url: https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.14.38/fflogs-v8.14.38.AppImage
+        sha256: 9487f37fdc9c42ad8482d76524e81522514c3176fb10a72e633a3debe2ab49e4
         dest-filename: fflogs.AppImage
       - type: file
         path: fflogs.sh
