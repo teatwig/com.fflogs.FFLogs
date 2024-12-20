@@ -1,8 +1,8 @@
 id: com.fflogs.FFLogs
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: '24.08'
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: com.fflogs.FFLogs
 separate-locales: false
@@ -37,8 +37,8 @@ modules:
       - patch-desktop-filename ${FLATPAK_DEST}/fflogs/resources/app.asar
     sources:
       - type: file
-        url: https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.14.38/fflogs-v8.14.38.AppImage
-        sha256: 9487f37fdc9c42ad8482d76524e81522514c3176fb10a72e633a3debe2ab49e4
+        url: https://github.com/RPGLogs/Uploaders-fflogs/releases/download/v8.15.7/fflogs-v8.15.7.AppImage
+        sha256: ace5647d2d1f445f22d16876602303543f83e1d59c09709cfdbec30f7e0894c9
         dest-filename: fflogs.AppImage
       - type: file
         path: fflogs.sh
